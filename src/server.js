@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
         botLogic.saveMessageToDatabase(req.body.event.user, req.body.event.text);
         botLogic.sendMessageToUser(
             req.body.event.channel,
-            'thank you for your response, I will talk to you soon, cioa :smiley: '
+            'thank you for your response, I will talk to you soon, ciao :smiley: '
         );
     }
     console.log(req.body);
