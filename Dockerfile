@@ -1,6 +1,6 @@
 FROM node:10.13.0
 
-WORKDIR use/src/app
+WORKDIR src/app
 
 # copy only package files to install the dependencies
 COPY package*.json ./

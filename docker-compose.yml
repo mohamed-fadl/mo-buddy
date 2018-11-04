@@ -1,6 +1,15 @@
 version: '3'
 services:
+  redis:
+    image: redis
+    container_name: cache
+    expose: 
+      - 6379
   web:
     build: .
+    links:
+     - redis
     ports:
      - "3000:3000"
+
+  

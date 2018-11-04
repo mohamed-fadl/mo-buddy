@@ -1,15 +1,28 @@
 const slackApi = require('./slack.api');
-
-const message = `hey buddy, I am mohamed\'s buddy and he 
-                    just wanna know if you worked with sprint stuff 
-                    last working day, just for archiving reasons`;
+const path = require('path');
+const redis = require('redis').createClient('redis://cache');
 
 module.exports = {
-    sendRemindersToUsers: () => {
-        slackUsers = ["DDE1M5WG4"];
+    sendRemindersToUsers: message => {
+        slackUsers = ['DDUBA2QMN'];
+
+        // mohamed, alejandro, simon, viktor, tomas, bruse, johan, alex, tadious, bernhard
+        // slackUsers = ["DDUBA2QMN","DDV8GMQBW","DDUR4SNSD","DDVAJPDGT","DDUR5AESV","DDWRAM3P0","DDVAKLD5H","DDVDKEVT4","DDV8JGEBE","DDV8JN7E"];
 
         slackUsers.forEach(user => {
             slackApi.sendMessage(user, message);
         });
+    },
+
+    saveMessageToDatabase: async(userId, message) => {
+        console.log('mo trying to write to database');
+
+        var userName = await slackApi.getUserName(userId);
+        var today = new Date();
+        redis.hset(userName, today, message);
+    },
+
+    sendMessageToUser: (userId, message) => {
+        slackApi.sendMessage(userId, message);
     }
-}
+};

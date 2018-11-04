@@ -1,2 +1,2 @@
-require('./src/server');
 require('dotenv').config();
+require('./src/server');
