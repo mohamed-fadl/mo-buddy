@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # make the server port avaiblabe for the outer world
-EXPOSE 3000
+EXPOSE 3030
 
 # start the application
 CMD ["npm" , "start"]

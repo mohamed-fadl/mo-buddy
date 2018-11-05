@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const botLogic = require('./bot-logic');
 
 var app = express();
-port = 3000;
+port = 3030;
 
 bodyParser.urlencoded({
     extended: true
@@ -30,6 +30,7 @@ app.post('/', (req, res) => {
         res.send(req.body.challenge);
         return;
     }
+
     // check if it's the command from mohamed
     if (
         req.body.command &&
@@ -38,6 +39,8 @@ app.post('/', (req, res) => {
     ) {
         var msg = req.body.text;
         if (msg == '') return;
+
+        console.log('log: received start buddy command');
         botLogic.sendRemindersToUsers(msg);
         res.status(200);
         res.send();
@@ -47,16 +50,18 @@ app.post('/', (req, res) => {
     if (req.body.event && req.body.event.type == 'message') {
         // if it's a bot message, ignore it
         if (req.body.event.bot_id) return;
-        console.log('mo recieved message');
+        console.log(`log: received a message ${req.body.event.text} from ${req.body.event.user}`);
+        // console.log('request body ', req.body);
         botLogic.saveMessageToDatabase(req.body.event.user, req.body.event.text);
         botLogic.sendMessageToUser(
             req.body.event.channel,
             'thank you for your response, I will talk to you soon, ciao :smiley: '
         );
+
+        res.status(200);
+        res.send();
     }
-    console.log(req.body);
-    res.status(200);
-    res.send();
+    
 });
 
 app.listen(port, () => {
