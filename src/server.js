@@ -53,10 +53,10 @@ app.post('/', (req, res) => {
         console.log(`log: received a message ${req.body.event.text} from ${req.body.event.user}`);
         // console.log('request body ', req.body);
         botLogic.saveMessageToDatabase(req.body.event.user, req.body.event.text);
-        botLogic.sendMessageToUser(
-            req.body.event.channel,
-            'thank you for your response, I will talk to you soon, ciao :smiley: '
-        );
+        // botLogic.sendMessageToUser(
+        //     req.body.event.channel,
+        //     'thank you for your response, I will talk to you soon, ciao :smiley: '
+        // );
 
         res.status(200);
         res.send();
