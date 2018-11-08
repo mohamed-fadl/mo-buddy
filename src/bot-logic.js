@@ -6,8 +6,8 @@ module.exports = {
     sendRemindersToUsers: message => {
         // slackUsers = ['DDUBA2QMN'];
 
-        // mohamed, alejandro, simon, viktor, tomas, bruse, johan, alex, tadious, bernhard
-        slackUsers = ["DDUBA2QMN","DDV8GMQBW","DDUR4SNSD","DDVAJPDGT","DDUR5AESV","DDWRAM3P0","DDVAKLD5H","DDVDKEVT4","DDV8JGEBE","DDV8JN7E"];
+        // mohamed, alejandro, simon, viktor, tomas, johan, alex, tadious, bernhard
+        slackUsers = ["DDUBA2QMN","DDV8GMQBW","DDUR4SNSD","DDVAJPDGT","DDUR5AESV","DDVAKLD5H","DDVDKEVT4","DDV8JGEBE","DDV8JN7E"];
         
         console.log('log: bot is sending messages for all users');
 
