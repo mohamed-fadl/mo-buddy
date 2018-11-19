@@ -3,33 +3,33 @@ const path = require('path');
 const redis = require('redis').createClient('redis://cache');
 
 module.exports = {
-    sendRemindersToUsers: message => {
-        // slackUsers = ['DDUBA2QMN'];
+  sendRemindersToUsers: message => {
 
-        // mohamed, alejandro, simon, viktor, tomas, johan, alex, tadious, bernhard
-        slackUsers = ["DDUBA2QMN","DDV8GMQBW","DDUR4SNSD","DDVAJPDGT","DDUR5AESV","DDVAKLD5H","DDVDKEVT4","DDV8JGEBE","DDV8JN7E"];
-        
-        console.log('log: bot is sending messages for all users');
+    // mohamed, alejandro, simon, viktor, tomas, johan, alex, tadious, nima, marcin
+    slackUsers = ["DDUBA2QMN", "DDV8GMQBW", "DDUR4SNSD", "DDVAJPDGT", "DDUR5AESV",
+      "DDVAKLD5H", "DDVDKEVT4", "DDV8JGEBE", "DE8GVP7GE", "DE86LUX55"];
 
-        slackUsers.forEach(user => {
-            slackApi.sendMessage(user, message);
-        });
-    },
+    console.log('log: bot is sending messages for all users');
 
-    saveMessageToDatabase: async(userId, message) => {
+    slackUsers.forEach(user => {
+      slackApi.sendMessage(user, message);
+    });
+  },
 
-        var userName = await slackApi.getUserName(userId);
-        var today = new Date();
-        redis.hset(userName, today, message);
+  saveMessageToDatabase: async (userId, message) => {
 
-        console.log(`log: bot wrote a message to ${userName} hashset`);
+    var userName = await slackApi.getUserName(userId);
+    var today = new Date();
+    redis.hset(userName, today, message);
 
-    },
+    console.log(`log: bot wrote a message to ${userName} hashset`);
 
-    sendMessageToUser: (userId, message) => {
-        slackApi.sendMessage(userId, message);
+  },
 
-        console.log(`log: bot sent single message to ${userId}`);
+  sendMessageToUser: (userId, message) => {
+    slackApi.sendMessage(userId, message);
 
-    }
+    console.log(`log: bot sent single message to ${userId}`);
+
+  }
 };
